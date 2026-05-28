@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { contact } = Astro.props
+const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY
 ---
 
 <section id="contact" class="relative overflow-hidden py-28">
@@ -54,6 +55,6 @@ const { contact } = Astro.props
       ))}
     </div>
 
-    <ContactForm client:visible email={contact.email} />
+    <ContactForm accessKey={web3FormsAccessKey} client:visible email={contact.email} />
   </div>
 </section>
