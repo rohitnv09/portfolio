@@ -1,0 +1,95 @@
+.top-nav {
+  position: fixed;
+  top: 0.5rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 0.4rem 1rem;
+  border-radius: 40px;
+  box-shadow: 5px 5px 12px var(--shadow-dark), -4px -4px 10px var(--shadow-light) !important;
+}
+
+.nav-icon {
+  color: var(--text-secondary);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0px 0px 0px var(--shadow-dark), inset 0px 0px 0px var(--shadow-light);
+}
+
+.nav-icon svg {
+  fill: transparent;
+  transition: fill 0.2s ease;
+}
+
+.nav-icon:hover svg,
+.nav-icon.active-nav svg {
+  fill: var(--color-accent);
+}
+
+.nav-icon svg .no-fill {
+  fill: transparent !important;
+}
+
+.active-nav {
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+}
+
+.nav-icon:active {
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  transform: scale(0.92);
+}
+
+@media (max-width: 400px) {
+  .nav-container {
+    padding: 0.6rem 0.5rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .nav-container {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .nav-icon {
+    padding: 0.3rem;
+  }
+
+  .nav-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 250px) {
+  .top-nav {
+    padding: 0 0.5rem;
+  }
+
+  .nav-container {
+    padding: 0.3rem 0.2rem;
+  }
+
+  .nav-icon {
+    padding: 0.2rem;
+  }
+
+  .nav-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}

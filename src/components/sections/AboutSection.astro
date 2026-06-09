@@ -1,0 +1,16 @@
+---
+import { portfolio } from '../../content/portfolio'
+import './AboutSection.css'
+---
+
+<section id="about" class="about-section reveal-on-scroll">
+  <div class="section-header">
+    <h2 class="neu-text text-center">About Me</h2>
+  </div>
+
+  <div class="about-content neu-pressed">
+    {portfolio.about.paragraphs.map(paragraph => (
+      <p class="lcd-text">{paragraph}</p>
+    ))}
+  </div>
+</section>

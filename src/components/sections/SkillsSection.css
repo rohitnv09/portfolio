@@ -1,0 +1,360 @@
+.skills-section-container {
+  width: 100%;
+  position: relative;
+  padding: 4rem 0;
+}
+
+.skills-section-container.reveal-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skills-sticky-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.skills-console {
+  --dial-size: min(360px, 90vw, 38svh);
+  --dial-visual-overhang: calc(var(--dial-size) * 0.14);
+  --skills-stack-buffer: clamp(1.5rem, 4svh, 2.25rem);
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: calc(var(--dial-visual-overhang) + var(--skills-stack-buffer));
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .skills-console {
+    --skills-stack-buffer: clamp(3rem, 6vw, 4rem);
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--skills-stack-buffer);
+  }
+}
+
+/* Rotary Dial (Left) */
+.dial-map-container {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.dial-wrapper {
+  position: relative;
+  width: var(--dial-size);
+  height: var(--dial-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  touch-action: none; /* Prevent scrolling when dragging */
+}
+
+/* The engraved ring holding the notches */
+.dial-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Dial Tick Marks */
+.dial-tick {
+  position: absolute;
+  top: calc(var(--dial-size) * 0.05); /* slightly inside the ring */
+  left: 50%;
+  width: 2px;
+  height: calc(var(--dial-size) * 0.02);
+  background: color-mix(in srgb, var(--shadow-dark) 60%, transparent);
+  transform-origin: 50% calc(var(--dial-size) * 0.45);
+  margin-left: -1px;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.dial-tick.major {
+  height: calc(var(--dial-size) * 0.035);
+  background: var(--text-secondary);
+  opacity: 0.3;
+}
+
+.dial-notch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--dial-size) * 0.111);
+  height: calc(var(--dial-size) * 0.111);
+  margin-top: calc(var(--dial-size) * -0.0555);
+  margin-left: calc(var(--dial-size) * -0.0555);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.notch-dot {
+  width: calc(var(--dial-size) * 0.0333);
+  height: calc(var(--dial-size) * 0.0333);
+  border-radius: 50%;
+  background: var(--bg-color);
+  box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+  transition: all 0.3s ease;
+}
+
+.dial-notch:hover .notch-dot {
+  background: var(--text-secondary);
+  box-shadow: none;
+}
+
+.dial-notch.active .notch-dot {
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent), inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.dial-notch.active .notch-icon,
+.dial-notch:hover .notch-icon {
+  color: var(--text-primary);
+}
+
+.notch-icon {
+  position: absolute;
+  top: calc(var(--dial-size) * -0.0833);
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.notch-icon svg {
+  width: calc(var(--dial-size) * 0.05);
+  height: calc(var(--dial-size) * 0.05);
+  fill: transparent;
+  transition: fill 0.2s ease;
+}
+
+.dial-notch:hover .notch-icon svg,
+.dial-notch.active .notch-icon svg {
+  fill: var(--color-accent);
+}
+
+.notch-icon svg .no-fill {
+  fill: transparent !important;
+}
+
+/* The physical rotating knob */
+.dial-knob {
+  position: relative;
+  width: calc(var(--dial-size) * 0.666);
+  height: calc(var(--dial-size) * 0.666);
+  border-radius: 50%;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease-out; /* Smooth snapping */
+  z-index: 20;
+}
+
+.dial-knob:active {
+  cursor: grabbing;
+}
+
+/* A large central dome for realism */
+.dial-center-dome {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light), inset 2px 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: clamp(0.5rem, calc(var(--dial-size) * 0.04), 0.9rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The indicator dot on the edge of the knob */
+.dial-indicator {
+  position: absolute;
+  top: calc(var(--dial-size) * 0.0555);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--dial-size) * 0.0388);
+  height: calc(var(--dial-size) * 0.0388);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 80%, var(--bg-color));
+  box-shadow: 
+    inset 1px 1px 2px rgba(0,0,0,0.3), 
+    inset -1px -1px 2px rgba(255,255,255,0.2),
+    0 0 12px color-mix(in srgb, var(--color-accent) 60%, transparent);
+}
+
+/* Display Screen (Right) */
+.console-display {
+  flex: 0 1 auto;
+  width: 100%;
+  min-height: clamp(13rem, 32svh, 20rem);
+  height: auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media (min-width: 900px) {
+  .dial-map-container,
+  .console-display {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .console-display {
+    width: auto;
+    min-height: 320px;
+  }
+}
+
+.display-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.display-category {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  opacity: 0.9;
+}
+
+
+.tech-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.65rem;
+  padding: 0.34rem 0.72rem;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--surface-sunken) 78%, transparent);
+  border: 1px solid color-mix(in srgb, var(--shadow-light) 24%, transparent);
+  box-shadow:
+    inset 2px 2px 4px color-mix(in srgb, var(--shadow-dark) 86%, transparent),
+    inset -1px -1px 2px color-mix(in srgb, var(--shadow-light) 42%, transparent);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  cursor: default;
+}
+
+.tech-tag::before {
+  content: none;
+}
+
+.tech-tag:hover {
+  color: color-mix(in srgb, var(--text-primary) 82%, var(--color-accent));
+  background: color-mix(in srgb, var(--surface-sunken) 88%, var(--color-accent));
+  border-color: color-mix(in srgb, var(--color-accent) 18%, var(--shadow-light));
+}
+
+@media (max-width: 480px) {
+  .skills-console {
+    --dial-size: min(250px, 60vw, 28svh);
+    --skills-stack-buffer: clamp(1.5rem, 4svh, 2rem);
+    padding: 0.5rem 1rem;
+  }
+  .console-display {
+    padding: 1rem;
+    min-height: clamp(11rem, 30svh, 13.75rem);
+  }
+  .display-header {
+    margin-bottom: 0.5rem;
+  }
+  .display-category {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    letter-spacing: 0.12em;
+  }
+  .tech-tags-container {
+    gap: 0.45rem;
+    margin-top: 0.5rem;
+  }
+  .tech-tag {
+    min-height: 1.4rem;
+    padding: 0.26rem 0.56rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-height: 700px) and (max-width: 480px) {
+  .skills-console {
+    --dial-size: min(250px, 60vw, 25svh);
+    --skills-stack-buffer: clamp(1rem, 4svh, 1.5rem);
+  }
+  .console-display {
+    min-height: clamp(9.5rem, 32svh, 12.5rem);
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .console-display {
+    padding: 0.8rem;
+  }
+  .tech-tag {
+    font-size: 0.66rem;
+    padding: 0.22rem 0.5rem;
+  }
+}
+@media (max-width: 250px) {
+  .skills-console {
+    padding: 0.5rem 0;
+  }
+}
+
+@media (max-height: 450px) and (max-width: 900px) {
+  .skills-section-container {
+    padding-bottom: 0;
+  }
+
+  .skills-sticky-wrapper {
+    transform: none;
+    justify-content: flex-start;
+  }
+
+  .skills-console {
+    --dial-size: min(220px, 48vw, 32svh);
+    --skills-stack-buffer: clamp(0.75rem, 3svh, 1rem);
+    padding-block: clamp(1.5rem, 6svh, 2rem);
+  }
+
+  .console-display {
+    min-height: auto;
+  }
+}

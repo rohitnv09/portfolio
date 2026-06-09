@@ -1,0 +1,63 @@
+.articles-section {
+  width: 100%;
+}
+
+.cassette-scroll {
+  display: flex;
+  gap: 2.5rem;
+  overflow-x: auto;
+  padding: 2rem 2.5rem 4rem 2.5rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cassette-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cassette-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.cassette-card {
+  min-width: 250px;
+  height: 180px;
+  padding: 1.5rem;
+  border-radius: 20px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cassette-window {
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.spool {
+  width: 20px;
+  height: 20px;
+  background: var(--bg-color);
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
+}
+
+.cassette-label h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.cassette-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: monospace;
+}

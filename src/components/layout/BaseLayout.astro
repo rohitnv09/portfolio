@@ -1,5 +1,4 @@
 ---
-import CloudflareAnalytics from './CloudflareAnalytics.astro'
 import '../../index.css'
 
 interface Props {
@@ -12,7 +11,7 @@ const { title, description, author } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,11 +21,53 @@ const { title, description, author } = Astro.props
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#f5f5f5" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
-  <body class="overflow-x-hidden bg-black text-zinc-100 antialiased selection:bg-white selection:text-black">
+  <body>
     <slot />
-    <CloudflareAnalytics />
+    <script is:inline>
+      window.__is_navigating = false;
+      window.__is_keyboard_navigating = false;
+      window.__is_global_pointer_down = false;
+
+      const handlePointerDown = (e) => {
+        const btn = e.target.closest('.neu-button');
+        if (btn) {
+          btn.dataset.pressTime = Date.now();
+          btn.classList.add('is-pressed');
+        }
+      };
+
+      const handlePointerUpOrLeave = (e) => {
+        const btn = e.target.closest('.neu-button');
+        if (btn && btn.classList.contains('is-pressed')) {
+          const pressTime = parseInt(btn.dataset.pressTime || '0', 10);
+          const elapsed = Date.now() - pressTime;
+          const minDuration = 150;
+
+          if (elapsed < minDuration) {
+            setTimeout(() => {
+              btn.classList.remove('is-pressed');
+            }, minDuration - elapsed);
+          } else {
+            btn.classList.remove('is-pressed');
+          }
+        }
+      };
+
+      document.addEventListener('pointerdown', handlePointerDown);
+      document.addEventListener('pointerup', handlePointerUpOrLeave);
+      document.addEventListener('pointercancel', handlePointerUpOrLeave);
+      document.addEventListener('pointerout', handlePointerUpOrLeave);
+    </script>
   </body>
 </html>

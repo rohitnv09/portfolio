@@ -1,0 +1,115 @@
+.experience-section {
+  width: 100%;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 1rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+}
+
+.timeline-track {
+  width: 16px;
+  background: transparent;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.timeline-node {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-top: 1.5rem;
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid var(--bg-color);
+}
+
+.timeline-content {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 30px;
+}
+
+.exp-year {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.exp-bullets li {
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .timeline-track,
+  .timeline-node {
+    display: none;
+  }
+
+  .timeline-item {
+    gap: 0;
+  }
+
+  .timeline-container {
+    padding-left: 0;
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
+  }
+
+  .exp-year {
+    font-size: 1.2rem;
+  }
+
+  .exp-role {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-container {
+    gap: 1.5rem;
+  }
+
+  .timeline-content {
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.95rem;
+  }
+}
+
+.exp-role {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.exp-company {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-secondary);
+}

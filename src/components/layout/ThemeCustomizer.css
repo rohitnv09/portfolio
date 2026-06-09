@@ -1,0 +1,122 @@
+.theme-customizer {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  pointer-events: none;
+}
+
+.customizer-toggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.customizer-toggle svg {
+  fill: transparent;
+  transition: fill 0.2s ease;
+}
+
+.customizer-toggle:hover svg {
+  fill: var(--color-accent);
+}
+
+.customizer-toggle svg circle {
+  fill: transparent;
+  transition: fill 0.2s ease;
+}
+
+.customizer-toggle:hover svg circle {
+  fill: var(--bg-color);
+}
+
+.customizer-panel {
+  padding: 1.5rem;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: all var(--transition-normal);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.theme-customizer.open .customizer-panel {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.customizer-panel h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--shadow-dark);
+  padding-bottom: 0.5rem;
+}
+
+.color-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.color-control label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+input[type='color'] {
+  -webkit-appearance: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  background: var(--bg-color);
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 4px;
+}
+
+input[type='color']::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+.hex-val {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  margin-top: 0.5rem;
+  text-align: center;
+}

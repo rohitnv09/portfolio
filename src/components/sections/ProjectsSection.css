@@ -1,0 +1,248 @@
+.projects-section {
+  width: 100%;
+}
+
+.projects-scroll {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 2rem 0 2rem 2.5rem;
+  -webkit-overflow-scrolling: touch;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+}
+
+.projects-scroll::after {
+  content: '';
+  width: 2.5rem;
+  flex-shrink: 0;
+}
+
+.projects-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+.projects-scroll {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.custom-scrollbar-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 3rem 0;
+  width: 100%;
+}
+
+.custom-scrollbar-track {
+  height: 16px;
+  background: var(--bg-color);
+  box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-scrollbar-thumb {
+  position: absolute;
+  left: 0;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  background-image: var(--specks-bg), var(--grain-bg);
+  background-blend-mode: screen, multiply, normal;
+  background-repeat: repeat, repeat;
+  background-size: 200px 200px, 250px 250px;
+  border: 7px solid var(--bg-color);
+  box-shadow:
+    4px 4px 8px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light),
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+  cursor: grab;
+  transition: border-color 0.2s ease, transform 0.1s ease-out;
+  will-change: transform;
+  touch-action: none;
+}
+
+.custom-scrollbar-thumb:hover {
+  border-color: var(--surface-raised);
+}
+
+.custom-scrollbar-thumb:active {
+  cursor: grabbing;
+}
+
+.project-card {
+  min-width: 300px;
+  max-width: 350px;
+  flex-shrink: 0;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: center;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+  box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+}
+
+.github-btn svg:first-child {
+  fill: transparent;
+  transition: fill 0.2s ease;
+}
+
+.github-btn:hover svg:first-child {
+  fill: var(--color-accent);
+}
+
+.demo-btn .demo-text {
+  position: relative;
+}
+
+.demo-btn .demo-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.demo-btn:hover .demo-text::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.project-badge {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+}
+
+.project-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.project-card:hover .project-icon {
+  color: inherit;
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  transform: scale(1.05);
+}
+
+.project-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.project-card p {
+  font-size: 1.1rem;
+  margin: 0;
+  max-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .project-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .project-card {
+    min-width: 280px;
+    padding: 2rem;
+  }
+
+  .custom-scrollbar-track {
+    height: 12px;
+  }
+
+  .custom-scrollbar-thumb {
+    border-width: 5px;
+  }
+
+  .projects-scroll {
+    gap: 1.5rem;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+  }
+
+  .projects-scroll::after {
+    width: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card {
+    min-width: 80vw;
+    max-width: 80vw;
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .project-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .project-card p {
+    font-size: 0.95rem;
+  }
+
+  .project-meta {
+    margin-bottom: 1.5rem;
+  }
+
+  .project-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-scrollbar-track {
+    height: 10px;
+  }
+
+  .custom-scrollbar-thumb {
+    border-width: 4px;
+  }
+
+  .projects-scroll {
+    gap: 1rem;
+    padding: 1.5rem 0 1.5rem 1rem;
+  }
+
+  .projects-scroll::after {
+    width: 1rem;
+  }
+}

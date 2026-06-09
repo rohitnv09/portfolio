@@ -1,0 +1,139 @@
+.contact-section {
+  width: 100%;
+}
+
+.contact-form {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.neu-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  outline: none;
+  border-radius: 20px;
+}
+
+.neu-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.neu-input:-webkit-autofill,
+.neu-input:-webkit-autofill:hover,
+.neu-input:-webkit-autofill:focus,
+.neu-input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+
+.textarea {
+  resize: none;
+  min-height: 160px;
+}
+
+.form-status {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--shadow-light) 28%, transparent);
+  background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+  box-shadow:
+    inset 2px 2px 4px color-mix(in srgb, var(--shadow-dark) 86%, transparent),
+    inset -1px -1px 2px color-mix(in srgb, var(--shadow-light) 42%, transparent);
+}
+
+.form-status strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.form-status p {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
+  background: none;
+  background-color: transparent;
+  background-image: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  color: inherit;
+}
+
+.form-status.success {
+  color: color-mix(in srgb, var(--text-primary) 84%, var(--color-accent));
+}
+
+.form-status.error {
+  color: color-mix(in srgb, var(--text-primary) 84%, #ff6b6b);
+}
+
+.form-status svg {
+  flex: 0 0 auto;
+  margin-top: 0.1rem;
+}
+
+.submit-btn {
+  padding: 1.25rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.submit-btn svg {
+  fill: transparent;
+  transition: fill 0.2s ease;
+}
+
+.submit-btn:hover svg {
+  fill: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 1.5rem;
+    gap: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .neu-input {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 15px;
+  }
+
+  .submit-btn {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

@@ -1,37 +1,28 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro'
-import Navigation from '../components/solid/Navigation'
-import About from '../components/sections/About.astro'
-import Contact from '../components/sections/Contact.astro'
-import Education from '../components/sections/Education.astro'
-import Experience from '../components/sections/Experience.astro'
-import Footer from '../components/sections/Footer.astro'
-import Hero from '../components/sections/Hero.astro'
-import ProofLinks from '../components/sections/ProofLinks.astro'
-import ProofSnapshot from '../components/sections/ProofSnapshot.astro'
-import Projects from '../components/sections/Projects.astro'
-import Skills from '../components/sections/Skills.astro'
-import Strengths from '../components/sections/Strengths.astro'
-import portfolioData from '../data/portfolio.json'
-import type { PortfolioContent } from '../types/portfolio'
-
-const portfolio = portfolioData as PortfolioContent
+import AboutSection from '../components/sections/AboutSection.astro'
+import ContactSection from '../components/sections/ContactSection'
+import ExperienceSection from '../components/sections/ExperienceSection'
+import HeroSection from '../components/sections/HeroSection.astro'
+import ProjectsSection from '../components/sections/ProjectsSection'
+import SkillsIsland from '../components/sections/SkillsIsland.astro'
+import Navigation from '../components/layout/Navigation'
+import ThemeCustomizer from '../components/layout/ThemeCustomizer'
+import { portfolio } from '../content/portfolio'
 ---
 
 <BaseLayout title={portfolio.site.title} description={portfolio.site.description} author={portfolio.site.author}>
-  <Navigation client:load contactHref="#contact" initials={portfolio.site.initials} items={portfolio.navigation} />
-
-  <main class="relative mx-auto min-h-screen w-full max-w-[1440px] overflow-hidden border-x border-white/[0.02]">
-    <Hero hero={portfolio.hero} />
-    <About about={portfolio.about} />
-    <ProofSnapshot proof={portfolio.proofSnapshot} />
-    <Projects projects={portfolio.projects} />
-    <Strengths strengths={portfolio.strengths} />
-    <Experience experience={portfolio.experience} />
-    <Skills skills={portfolio.skills} />
-    <ProofLinks proofLinks={portfolio.proofLinks} />
-    <Education education={portfolio.education} />
-    <Contact contact={portfolio.contact} />
-    <Footer author={portfolio.site.author} socials={portfolio.socials} />
-  </main>
+  <div class="app-wrapper">
+    <Navigation client:load />
+    <ThemeCustomizer client:load />
+    <main class="main-content">
+      <HeroSection />
+      <AboutSection />
+      <ProjectsSection client:load />
+      <!-- Articles section is temporarily disabled until real posts are ready. -->
+      <ExperienceSection client:load />
+      <SkillsIsland />
+      <ContactSection client:load />
+    </main>
+  </div>
 </BaseLayout>

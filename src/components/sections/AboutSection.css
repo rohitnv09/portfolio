@@ -1,0 +1,30 @@
+.about-section {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-content {
+  padding: 3rem;
+  border-radius: 20px;
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.lcd-text {
+  font-family: monospace;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.lcd-text:last-child {
+  margin-bottom: 0;
+}
