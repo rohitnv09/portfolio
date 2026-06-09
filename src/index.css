@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Geist";
   src: url("https://cdn.jsdelivr.net/npm/geist@1.7.1/dist/fonts/geist-sans/Geist-Variable.woff2") format("woff2");
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 100 900;
 }
@@ -9,7 +9,7 @@
 @font-face {
   font-family: "Geist Mono";
   src: url("https://cdn.jsdelivr.net/npm/geist@1.7.1/dist/fonts/geist-mono/GeistMono-Variable.woff2") format("woff2");
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 100 900;
 }
@@ -17,7 +17,6 @@
 :root {
   color-scheme: light;
   font-family: var(--font-sans);
-  background: #f5f5f5;
   --bg-color: #f5f5f5;
   --text-primary: rgba(0, 0, 0, 0.85);
   --text-secondary: rgba(0, 0, 0, 0.85);
@@ -45,16 +44,16 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100%;
-  overflow-x: hidden;
   background-color: var(--bg-color);
   background-image: var(--specks-bg), var(--grain-bg);
   background-blend-mode: screen, multiply, normal;
   background-repeat: repeat, repeat;
   background-size: 200px 200px, 250px 250px;
+}
+
+body {
+  /* min-height: 100%; */
+  overflow-x: hidden;
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-weight: 600;
@@ -243,13 +242,11 @@ p {
 }
 
 .pattern-lines {
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.13) 0,
-    rgba(0, 0, 0, 0.13) 1px,
-    transparent 1px,
-    transparent 16px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      rgba(0, 0, 0, 0.13) 0,
+      rgba(0, 0, 0, 0.13) 1px,
+      transparent 1px,
+      transparent 16px);
 }
 
 .pattern-hexagons {

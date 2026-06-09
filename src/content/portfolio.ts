@@ -87,8 +87,8 @@ export const portfolio = {
   navigation: [
     { label: 'Home', href: '#home', icon: 'home', activeSections: ['home', 'about'] },
     { label: 'Projects', href: '#projects', icon: 'folder', activeSections: ['projects', 'articles'] },
-    { label: 'Experience', href: '#experience', icon: 'briefcase', activeSections: ['experience'] },
-    { label: 'Skills', href: '#skills-heading', icon: 'wrench', activeSections: ['skills'] },
+    { label: 'Experience', href: '#experience', icon: 'briefcase', activeSections: ['experience', 'skills'] },
+    // { label: 'Skills', href: '#skills-heading', icon: 'wrench', activeSections: ['skills'] },
     { label: 'Contact', href: '#contact', icon: 'mail', activeSections: ['contact'] },
   ],
   hero: {

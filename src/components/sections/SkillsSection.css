@@ -18,13 +18,13 @@
 }
 
 .skills-console {
-  --dial-size: min(360px, 90vw, 38svh);
+  --dial-size: min(320px, 85vw, 35svh);
   --dial-visual-overhang: calc(var(--dial-size) * 0.14);
   --skills-stack-buffer: clamp(1.5rem, 4svh, 2.25rem);
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 4vw, 3rem) 0;
   border-radius: 40px;
   display: flex;
   flex-direction: column-reverse;
@@ -38,6 +38,7 @@
     flex-direction: row;
     align-items: stretch;
     gap: var(--skills-stack-buffer);
+    --dial-size: min(340px, 40vw, 38svh);
   }
 }
 
@@ -54,11 +55,14 @@
   position: relative;
   width: var(--dial-size);
   height: var(--dial-size);
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  touch-action: none; /* Prevent scrolling when dragging */
+  touch-action: none;
+  /* Prevent scrolling when dragging */
 }
 
 /* The engraved ring holding the notches */
@@ -69,10 +73,31 @@
   border-radius: 50%;
 }
 
+.dial-ring::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: conic-gradient(color-mix(in srgb, var(--color-accent) 70%, transparent) 0deg,
+      color-mix(in srgb, var(--color-accent) 70%, transparent) var(--current-rotation, 0deg),
+      transparent var(--current-rotation, 0deg)) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
 /* Dial Tick Marks */
 .dial-tick {
   position: absolute;
-  top: calc(var(--dial-size) * 0.05); /* slightly inside the ring */
+  top: calc(var(--dial-size) * 0.05);
+  /* slightly inside the ring */
   left: 50%;
   width: 2px;
   height: calc(var(--dial-size) * 0.02);
@@ -157,12 +182,15 @@
   position: relative;
   width: calc(var(--dial-size) * 0.666);
   height: calc(var(--dial-size) * 0.666);
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   cursor: grab;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.1s ease-out; /* Smooth snapping */
+  transition: transform 0.1s ease-out;
+  /* Smooth snapping */
   z-index: 20;
 }
 
@@ -196,9 +224,9 @@
   height: calc(var(--dial-size) * 0.0388);
   border-radius: 50%;
   background: color-mix(in srgb, var(--color-accent) 80%, var(--bg-color));
-  box-shadow: 
-    inset 1px 1px 2px rgba(0,0,0,0.3), 
-    inset -1px -1px 2px rgba(255,255,255,0.2),
+  box-shadow:
+    inset 1px 1px 2px rgba(0, 0, 0, 0.3),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.2),
     0 0 12px color-mix(in srgb, var(--color-accent) 60%, transparent);
 }
 
@@ -218,6 +246,7 @@
 }
 
 @media (min-width: 900px) {
+
   .dial-map-container,
   .console-display {
     flex: 1 1 0;
@@ -289,21 +318,26 @@
     --skills-stack-buffer: clamp(1.5rem, 4svh, 2rem);
     padding: 0.5rem 1rem;
   }
+
   .console-display {
     padding: 1rem;
     min-height: clamp(11rem, 30svh, 13.75rem);
   }
+
   .display-header {
     margin-bottom: 0.5rem;
   }
+
   .display-category {
     font-size: clamp(0.9rem, 4vw, 1rem);
     letter-spacing: 0.12em;
   }
+
   .tech-tags-container {
     gap: 0.45rem;
     margin-top: 0.5rem;
   }
+
   .tech-tag {
     min-height: 1.4rem;
     padding: 0.26rem 0.56rem;
@@ -317,6 +351,7 @@
     --dial-size: min(250px, 60vw, 25svh);
     --skills-stack-buffer: clamp(1rem, 4svh, 1.5rem);
   }
+
   .console-display {
     min-height: clamp(9.5rem, 32svh, 12.5rem);
     padding: 0.8rem;
@@ -327,11 +362,13 @@
   .console-display {
     padding: 0.8rem;
   }
+
   .tech-tag {
     font-size: 0.66rem;
     padding: 0.22rem 0.5rem;
   }
 }
+
 @media (max-width: 250px) {
   .skills-console {
     padding: 0.5rem 0;

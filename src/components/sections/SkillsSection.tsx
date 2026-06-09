@@ -416,6 +416,7 @@ export default function SkillsSection() {
                 dialRef = el
               }}
               class="dial-wrapper"
+              style={{ "--current-rotation": `${rotation()}deg` }}
             >
               {Array.from({ length: 55 }, (_, index) => {
                 const angle = index * 6

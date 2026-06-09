@@ -1,5 +1,6 @@
 ---
 import { portfolio } from '../../content/portfolio'
+import HeroTerminal from '../ui/HeroTerminal'
 import './HeroSection.css'
 ---
 
@@ -44,7 +45,7 @@ import './HeroSection.css'
     <div class="album-art-wrapper reveal-on-scroll" style="animation-delay: 0.2s;">
       <div class="album-art neu-convex">
         <div class="album-image">
-          <span class="album-initials">{portfolio.site.initials}</span>
+          <HeroTerminal client:load />
         </div>
       </div>
     </div>
