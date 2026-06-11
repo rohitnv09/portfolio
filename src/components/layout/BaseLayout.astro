@@ -1,5 +1,6 @@
 ---
 import CloudflareAnalytics from './CloudflareAnalytics.astro'
+import MicrosoftClarity from './MicrosoftClarity.astro'
 import '../../index.css'
 import { lightTheme, darkTheme } from '../../utils/theme'
 
@@ -35,6 +36,7 @@ const { title, description, author } = Astro.props
       rel="stylesheet"
     />
     <title>{title}</title>
+    <MicrosoftClarity />
     <script is:inline define:vars={{ lightTheme, darkTheme }}>
       (function() {
         const buildTexture = (type, opacity) => {
